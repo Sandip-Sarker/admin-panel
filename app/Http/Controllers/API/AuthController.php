@@ -6,25 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Api\RegisterRequest;
 
 class AuthController extends Controller
 {
 
-    public function registration(Request $request)
+    public function registration(RegisterRequest $request)
     {
-        // Validate request
-        $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'password_confirmation' => ['required', 'string', 'min:6'],
-        ]);
+
 
         // Create user
         $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
         ]);
 
     
@@ -36,8 +31,6 @@ class AuthController extends Controller
             ],
         ], 200);
     }
-
-
 
 
     public function login(Request $request)
