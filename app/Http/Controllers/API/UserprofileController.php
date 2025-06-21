@@ -81,4 +81,36 @@ class UserprofileController extends Controller
             'data' => $user
         ], 200);
     }
+
+
+    public function deleteAccount(Request $request)
+    {
+        
+        $user = auth()->user();
+       
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User not found',
+                'data' => null
+            ], 404);
+        }
+
+        
+        if (!password_verify($request->password, $user->password)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'password is incorrect',
+                'data' => null
+            ], 400);
+        }
+
+        $user->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User Account Deleted Successfully',
+            'data' => null
+        ], 200);
+    }
 }

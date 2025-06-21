@@ -17,5 +17,5 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/get-profile', [UserprofileController::class, 'getProfile']);
     Route::post('/update-profile', [UserprofileController::class, 'updateProfile']);
     Route::post('/update-password', [UserprofileController::class, 'updatePassword']);   
-
+    Route::post('/delete-account', [UserprofileController::class, 'deleteAccount']);
 });
