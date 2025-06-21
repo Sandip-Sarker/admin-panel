@@ -16,7 +16,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        $data['title'] = 'Softvence - login';
+        return view('auth.login')->with($data);
     }
 
     /**
