@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Api\RegisterRequest;
+use App\Http\Requests\Api\LoginRequest;
 
 class AuthController extends Controller
 {
@@ -33,14 +34,10 @@ class AuthController extends Controller
     }
 
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         
-        // Validate request
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $credentials = $request->only('email', 'password');
 
         $token = Auth::guard('api')->attempt($credentials);
 
