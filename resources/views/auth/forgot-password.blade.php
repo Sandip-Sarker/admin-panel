@@ -151,7 +151,8 @@
 					<div class="col-12 container-login100">
 						<div class="row">
 							<div class="col col-login mx-auto">
-								<form class="card shadow-none" method="post">
+								<form class="card shadow-none" method="post" action="{{ route('otp.send') }}">
+                                    @csrf
 									<div class="card-body">
 										<div class="text-center">
 											<span class="login100-form-title">
@@ -162,10 +163,10 @@
 										<div class="pt-3" id="forgot">
 											<div class="form-group">
 												<label class="form-label" for="eMail">E-Mail:</label>
-												<input class="form-control" id="eMail" placeholder="Enter Your Email" type="email">
+												<input class="form-control" id="eMail" placeholder="Enter Your Email" type="email" name="email" required>
 											</div>
 											<div class="submit">
-												<a class="btn btn-primary d-grid" href="index.html">Submit</a>
+												<button type="submit" class="btn btn-primary w-100">Submit</button>
 											</div>
 											<div class="text-center mt-4">
 												<p class="text-dark mb-0">Forgot It?<a class="text-primary ms-1" href="#">Send me Back</a></p>

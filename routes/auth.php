@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\VerifyEamilOtpController;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -25,10 +26,18 @@ Route::middleware('guest')->group(function () {
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
 
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-        ->name('password.email');
+    Route::post('send-otp', [VerifyEamilOtpController::class, 'sendOtp'])
+        ->name('otp.send');
 
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+    Route::get('send-otp', [VerifyEamilOtpController::class, 'OtpPage'])
+        ->name('otp.page');
+
+    Route::post('otp-verify', [VerifyEamilOtpController::class, 'verifyOtp'])
+        ->name('otp.verify');
+    // Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
+    //     ->name('password.email');
+
+    Route::get('reset-password/', [NewPasswordController::class, 'create'])
         ->name('password.reset');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])

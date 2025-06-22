@@ -12,7 +12,6 @@ Route::middleware('auth:api')->group(function(){
 
      Route::post('/logout', [AuthController::class, 'logout']);
 
-
      // User Profile
     Route::get('/get-profile', [UserprofileController::class, 'getProfile']);
     Route::post('/update-profile', [UserprofileController::class, 'updateProfile']);
