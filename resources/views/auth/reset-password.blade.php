@@ -205,7 +205,7 @@
                                                 </ul>
                                             </div>
                                         @endif
-                                        
+
 										<div class="text-center">
 											<span class="login100-form-title">
                                                 Reset Password
@@ -233,10 +233,8 @@
                                             {{-- Confirm Password --}}
                                             <div class="form-group">
                                                 <label class="form-label" for="password_confirmation">Confirm Password:</label>
-                                                <input class="form-control" id="password_confirmation" type="password" name="password_confirmation" required>
-                                              
+                                                <input class="form-control" id="password_confirmation" type="password" name="password_confirmation" required>                                            
                                             </div>
-
 
 											<div class="submit">
 												<button type="submit" class="btn btn-primary w-100" >Submit</button>

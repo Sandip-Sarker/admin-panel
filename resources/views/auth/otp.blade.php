@@ -169,7 +169,6 @@
                                     
                                         @endphp
 
-
 										<div class="pt-3" id="forgot">
                                             <input type="hidden" name="email" value="{{ $email }}">
 											<div class="form-group">
