@@ -14,6 +14,7 @@ class VerifyEamilOtpController extends Controller
 
     public function OtpPage()
     {
+        
         return view('auth.otp');
     }
 
@@ -81,6 +82,36 @@ class VerifyEamilOtpController extends Controller
         ]);
 
         return view('auth.reset-password');
+    }
+
+    public function showForm(Request $request)
+    {
+        
+        $email = session('email', ''); // fallback to empty if not found
+
+        return view('auth.reset-password', compact('email'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required', 'confirmed', 'min:6'],
+        ]);
+
+        $user = \App\Models\User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'User not found.']);
+        }
+
+        $user->update([
+            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+        ]);
+
+        session()->forget('email'); // Optional: clean up
+
+        return redirect()->route('login')->with('status', 'Password reset successfully. Please login with your new password.');
     }
 
 

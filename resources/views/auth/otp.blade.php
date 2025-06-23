@@ -19,6 +19,7 @@
     
         <body class="ltr login-img">
 
+            {{-- @dd(Session::get('user')->email ?? ''); --}}
      
         <!-- Switcher-->
         <!-- Switcher -->

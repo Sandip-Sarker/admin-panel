@@ -30,20 +30,23 @@ class NewPasswordController extends Controller
      */
 
   
-     public function store(Request $request)
-     {
-        
-        $request->validate( [
+    public function store(Request $request)
+    {
+        $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed'],
         ]);
-        
-        $user = User::where('email', $request->email)->update([
-            'password' => Hash::make($request->password),  
+
+        if ($request->password !== $request->password_confirmation) {
+            return redirect()->route('password.reset', ['email' => $request->email])
+                ->withErrors(['password' => 'The password and confirmation password do not match.']);
+        }
+
+        User::where('email', $request->email)->update([
+            'password' => Hash::make($request->password),
         ]);
 
         return redirect()->route('login')->with('status', 'Password reset successfully. Please login with your new password.');
-
     }
 
     // public function store(Request $request): RedirectResponse

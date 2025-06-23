@@ -195,6 +195,17 @@
 								<form class="card shadow-none" method="post" action="{{ route('password.store') }}">
                                     @csrf
 									<div class="card-body">
+
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        
 										<div class="text-center">
 											<span class="login100-form-title">
                                                 Reset Password
@@ -217,11 +228,13 @@
                                             <div class="form-group">
                                                 <label class="form-label" for="password">New Password:</label>
                                                 <input class="form-control" id="password" type="password" name="password" required>
+                                              
                                             </div>
                                             {{-- Confirm Password --}}
                                             <div class="form-group">
                                                 <label class="form-label" for="password_confirmation">Confirm Password:</label>
                                                 <input class="form-control" id="password_confirmation" type="password" name="password_confirmation" required>
+                                              
                                             </div>
 
 
