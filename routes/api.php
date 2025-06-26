@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\PostController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\AuthController; 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UserprofileController;
 
 
@@ -15,6 +16,11 @@ Route::middleware('auth:api')->group(function(){
      // User Profile
     Route::get('/get-profile', [UserprofileController::class, 'getProfile']);
     Route::post('/update-profile', [UserprofileController::class, 'updateProfile']);
-    Route::post('/update-password', [UserprofileController::class, 'updatePassword']);   
+    Route::post('/update-password', [UserprofileController::class, 'updatePassword']);
     Route::post('/delete-account', [UserprofileController::class, 'deleteAccount']);
+
+    Route::post('/post-store', [PostController::class, 'store']);
+    Route::post('/post-delete/{id}', [PostController::class, 'destroy']);
 });
+
+

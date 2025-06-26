@@ -10,7 +10,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-   
+
     use HasFactory, Notifiable;
 
     // Add these two methods:
@@ -44,5 +44,10 @@ class User extends Authenticatable implements JWTSubject
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function post()
+    {
+        return $this->hasMany(Post::class);
     }
 }

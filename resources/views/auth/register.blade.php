@@ -150,6 +150,15 @@
 					<div class="container-login100">
 						<div class="wrap-login100 p-0">
 							<div class="card-body">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
 								<form class="login100-form validate-form" method="POST" action="{{ route('register') }}">
                                     @csrf
                                     {{-- validation error --}}
